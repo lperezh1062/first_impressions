@@ -10,7 +10,7 @@ RUN apt-get update -qq &&\
 	apt-get clean &&\
     apt-get install -qq --no-install-recommends \
         libopenblas-dev liblapack-dev libx11-dev \
-        libc6-dev libgdiplus yasm \
+        libc6-dev libgdiplus \
         libavcodec-dev libavformat-dev libswscale-dev \
         libtbb2 libtbb-dev libjpeg-dev libboost-all-dev python3 \
         python-pip git g++-8 build-essential wget curl \
