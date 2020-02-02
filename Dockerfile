@@ -88,3 +88,5 @@ WORKDIR /root/build-dep/opencv/build
 RUN cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D BUILD_TIFF=ON -D WITH_TBB=ON -D BUILD_SHARED_LIBS=OFF .. &&\
     cmake --build . -j 4 && \
     make install
+    
+RUN mkdir /root/Pruebas
