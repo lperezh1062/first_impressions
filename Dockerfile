@@ -10,7 +10,7 @@ RUN apt-get update -qq &&\
 	apt-get clean &&\
     apt-get install -qq --no-install-recommends \
         libopenblas-dev liblapack-dev libx11-dev \
-        libc6-dev libgdiplus\
+        libc6-dev libgdiplus yasm \
         libavcodec-dev libavformat-dev libswscale-dev \
         libtbb2 libtbb-dev libjpeg-dev libboost-all-dev python3 \
         python-pip git g++-8 build-essential wget curl \
@@ -39,25 +39,6 @@ RUN wget https://github.com/Kitware/CMake/releases/download/v3.14.2/cmake-3.14.2
 ENV PATH /opt/cmake-3.14.2-Linux-x86_64/bin:$PATH
 
 ## ==================== Build-time dependency libs ======================
-## This will build and install opencv and dlib into an additional dummy
-## directory, /root/diff, so we can later copy in these artifacts,
-## minimizing docker layer size
-## Protip: ninja is faster than `make -j` and less likely to lock up system
-
-WORKDIR /root/app 
-
-#RUN RUN apt-add-repository ppa:git-core/ppa && apt-get update && apt-get install -y git
-
-RUN wget https://www.ffmpeg.org/releases/ffmpeg-4.0.2.tar.gz
-RUN tar -xzf ffmpeg-4.0.2.tar.gz; rm -r ffmpeg-4.0.2.tar.gz
-RUN cd ./ffmpeg-4.0.2; ./configure --enable-gpl --enable-libmp3lame --enable-decoder=mjpeg,png --enable-encoder=png --enable-openssl --enable-nonfree
-
-
-RUN cd ./ffmpeg-4.0.2 #make
-RUN  cd ./ffmpeg-4.0.2 # make install
-
-
-
 
 WORKDIR /root/build-dep
 ARG DEBIAN_FRONTEND=noninteractive
