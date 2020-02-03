@@ -28,6 +28,8 @@ RUN pip install keras-vggface --no-dependencies
 RUN pip install -U keras_applications==1.0.6 --no-deps 
 Run pip install -U scikit-learn 
 RUN pip install ffmpeg-python
+RUN pip install natsort
+RUN pip install pandas
 
 ##======================= Cmake =========================================
 ARG DEBIAN_FRONTEND=noninteractive
